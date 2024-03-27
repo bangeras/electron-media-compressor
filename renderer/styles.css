@@ -1,0 +1,105 @@
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: inline;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.disabled-button {
+  background-color: #ccc; /* Light gray background */
+  color: #666; /* Dark gray text color */
+  cursor: not-allowed; /* Change cursor to indicate non-interactivity */
+  opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
+  pointer-events: none; /* Disable pointer events to prevent interactions */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px; /* Add space below the table */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  border: 0px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-radius: 18px 18px 0 0; /* Rounded top corners */
+}
+
+td img {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.loading-icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.media-player {
+  display: flex;
+  align-items: center;
+}
+
+.media-player p {
+  margin: 0;
+}
+
+.icon-container {
+  display: flex; /* Use flexbox */
+  gap: 10px; /* Add space between icons */
+  
+}
+
+.icon-container img {
+  cursor: pointer;
+}
+
+.img:hover {
+  background-color: hsl(128, 100%, 35%);
+}
+
+.div {
+  display: inline-block;
+  align-items: center;
+}
