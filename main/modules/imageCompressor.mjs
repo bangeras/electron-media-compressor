@@ -5,11 +5,12 @@ import imageminGifsicle from 'imagemin-gifsicle';
 import imageminSvgo from 'imagemin-svgo';
 import getFilePath, { getDocumentsPath } from './filePath.mjs';
 import { app } from 'electron';
+import { logger } from '../../common/logger.mjs';
 
 const compressImage = async(filePath) => {
     const outputDir = getFilePath(getDocumentsPath(), app.getName());
-    console.log(`imageCompressor.compressImage() for ${filePath}. Generating within ${outputDir}..`);
-
+    logger.info(`imageCompressor.compressImage() for ${filePath}. Generating within ${outputDir}`);
+    
     const result = await imagemin([filePath], {
         destination: outputDir,
         plugins: [

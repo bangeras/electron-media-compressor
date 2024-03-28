@@ -4,6 +4,7 @@ import deleteIcon from '../images/delete.png';
 import LoadingIcons from 'react-loading-icons';
 import MediaPlayer from './mediaplayer.mjs';
 import { toast } from 'react-toastify';
+import { logger } from '../../common/logger.mjs';
 
 const FileSelector = () => {
     const [filesGrid, setFilesGrid] = useState([]);
@@ -24,7 +25,7 @@ const FileSelector = () => {
 
     useEffect(() => {
         // This function will be invoked only once after component mount
-        console.log('FileSelector mounted');
+        logger.info('FileSelector mounted');
         // You can perform any one-time setup or initialization here
 
         onAlertMessageHandler();
@@ -33,7 +34,7 @@ const FileSelector = () => {
     }, []); // Empty dependency array indicates that the effect should run only once
 
     useEffect(() => {
-        console.log("useEffect for filesGrid..", filesGrid);
+        logger.info(`useEffect for filesGrid..`);
     }, [filesGrid]);
 
     const onAlertMessageHandler = ()=>{
@@ -45,7 +46,6 @@ const FileSelector = () => {
     
     const onFilesMetadataResponseHandler = () => {
         window.electronApis.filesApi.onFilesMetadataResponse((filesGrid)=>{
-            console.log("filesGrid=", filesGrid);
             setFilesGridRef(filesGrid);
             fileGridRef.current.hidden = false // Display the File grid after metadata is ready to display
         });
@@ -72,13 +72,14 @@ const FileSelector = () => {
     };
 
     const getSelectedFilesMetadata = (filesGrid) => {
-        console.log("FileSelector.mjs getSelectedFilesMetadata() invoked.")
+        logger.info("FileSelector.mjs getSelectedFilesMetadata() invoked.");
         disableCompressAllButton(false);
         window.electronApis.filesApi.getFilesMetadata(filesGrid);
     };
 
     const compressFile = (index, filePath, filesGrid)=>{
-        console.log('compressFile() for ', filePath, index);
+        logger.info(`compressFile() for ${filePath} at ${index}`);
+
         loadingIconRefs.current[index].hidden = false; // load the spinner
         mediaPlayerRefs.current[index].hidden = true; // display the launch file icon
 
@@ -86,7 +87,7 @@ const FileSelector = () => {
     };
 
     const compressAllFiles = (filesGrid)=>{
-        console.log('compressAllFiles()..', compressAllButtonRef.current);
+        logger.info('compressAllFiles()..');
 
         disableCompressAllButton(true);
 
@@ -97,7 +98,7 @@ const FileSelector = () => {
     }
 
     const deleteFileAtIndex = (index)=>{
-        console.log('deleteFile() for ', filesGrid[index]);
+        logger.info(`deleteFile() for ${filesGrid[index]}`);
         
         //Create new object inorder to update the state:
         const result = [];

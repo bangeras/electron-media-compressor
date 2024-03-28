@@ -3,6 +3,7 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { registerHotReload } from './hotreloader.mjs';
 import registerIPCHandlers from './ipc/ipc.mjs';
+import { logger } from '../common/logger.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,10 +15,14 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 700,
+    // useContentSize: true,
+    frame: false, // frameless window
     webPreferences: {
+        
         nodeIntegration: true, // Disable Node.js integration in renderer process
         contextIsolation: true, // Enable context isolation in renderer process
         preload: path.join(__dirname, './preload/preload.mjs'), // Use the ESM preload path
+        sandbox: false
     }
   });
   mainWindow.loadFile('./renderer/dist/index.html');
@@ -32,6 +37,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
   mainWindow = createWindow(); //Launch Renderer process
   registerIPCHandlers(); // Handlers within main process for native API / NodeJS calls
+  logger.info('mainWindow created!');
 });
 
 app.on('activate', function () {
@@ -40,6 +46,19 @@ app.on('activate', function () {
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit();
+});
+
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (error) => {
+  logger.error(`Uncaught Exception: ${error}`);
+  // Optionally, perform cleanup or other actions before exiting
+  app.quit();
+});
+
+// Handle unhandled rejections
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error(`Unhandled Rejection: ${reason}`);
 });
 
 const getMainWindow = () => { //An alternative to BrowserWindow.getFocusedWindow() 

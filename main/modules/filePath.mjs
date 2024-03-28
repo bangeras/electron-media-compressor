@@ -1,6 +1,7 @@
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { app } from 'electron';
+import { logger } from '../../common/logger.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -8,7 +9,7 @@ const __dirname = dirname(__filename);
 const getDocumentsPath = () => {
     // Retrieve the path to the documents folder across OS:
     const documentsPath = app.getPath('documents');
-    console.log('Documents folder path:', documentsPath);
+    logger.info(`Documents folder path := ${documentsPath}`);
 
     return documentsPath;
 };

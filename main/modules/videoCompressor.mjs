@@ -3,13 +3,14 @@ import ffmpegPath from '@ffmpeg-installer/ffmpeg';
 import getFilePath, { getDocumentsPath } from './filePath.mjs';
 import { app } from 'electron';
 import path from 'path';
+import { logger } from '../../common/logger.mjs';
 
 ffmpeg.setFfmpegPath(ffmpegPath.path);
 
 const compressVideo = async(filePath) => {
   const outputDir = getFilePath(getDocumentsPath(), app.getName());
   const outputFileName = path.join(outputDir, path.basename(filePath));
-  console.log(`videoCompressor.compressVideo() for ${filePath}. Generating ${outputFileName}..`);
+  logger.info(`videoCompressor.compressVideo() for ${filePath}. Generating ${outputFileName}`);
   
   const bitrate = '500k'; // Set the desired bitrate for compression
 
@@ -18,11 +19,11 @@ const compressVideo = async(filePath) => {
     ffmpeg(filePath)
     .videoBitrate(bitrate)
     .on('error', err => {
-      console.log('Error compressing video:', err);
+      logger.error(`Error compressing video: ${err}`);
       reject(err);
     })
     .on('end', () => {
-      console.log('Video compression complete! Saved to ', outputFileName);
+      logger.info(`Video compression complete! Saved to ${outputFileName}`);
       resolve();
     })
     .saveToFile(outputFileName);

@@ -5,11 +5,12 @@ import path from "path";
 import compressFile from "../modules/fileCompressor.mjs";
 import getFileType from "../../common/fileType.mjs";
 import getMainWindow from "../main.mjs";
+import { logger } from "../../common/logger.mjs";
 
 const registerFileMetadataIPCHandler = ()=>{
 
     ipcMain.on(channels.FILE_METADATA_REQUEST, (event, filesGrid)=>{
-        console.log("loading file dialog..");
+        logger.info("loading file dialog..");
 
         const maxSelections = 5; // Set the maximum number of selections
 
@@ -25,7 +26,7 @@ const registerFileMetadataIPCHandler = ()=>{
             message: "Choose the file(s) for compression"
         })
         .then(async(result) =>  {
-            console.log(result.filePaths);
+            logger.info(result.filePaths);
             if (!result.canceled) {
                 if (result.filePaths.length > maxSelections) {
                     const message = `Allowed to select only ${maxSelections} files!`;
@@ -40,7 +41,7 @@ const registerFileMetadataIPCHandler = ()=>{
                 
             };
         }).catch(err => {
-            console.error("Error in registerFileMetadataIPCHandler.FILE_METADATA_REQUEST=", err)
+            logger.error(`Error in registerFileMetadataIPCHandler.FILE_METADATA_REQUEST=${err}`);
         });
     });
 
@@ -56,9 +57,9 @@ const registerFileMetadataIPCHandler = ()=>{
     };
 
     ipcMain.on(channels.COMPRESS_FILE_REQUEST, async(event, index, filePath, filesGrid)=>{
-        console.log("Compressing file - ", filePath);
+        logger.info(`Compressing file is ${filePath}`);
         const outputFilePath = await compressFile(filePath);
-        console.log("outputFilePath=", outputFilePath);
+        logger.info(`Compressed file is ${outputFilePath}`);
 
         //Merge compressed metadata on the original grid
         const compressedFileMetadata = await getMetaData([outputFilePath]);
@@ -75,17 +76,17 @@ const registerFileMetadataIPCHandler = ()=>{
 
 
     ipcMain.on(channels.OPEN_NATIVE_FILE, (event, filePath)=>{
-        console.log("loading native file viewer..");
+        logger.info("loading native file viewer..");
         shell.openPath(filePath).then(() => {
-            console.log('File opened with default application');
+            logger.info('File opened with default application');
         }).catch(err => {
-            console.error('Error opening file:', err);
+            logger.error('Error opening file: ${err}');
         });
 
     });
 
 
-    console.log("Registered FileMetadataIPCHandler!");
+    logger.info("Registered FileMetadataIPCHandler!");
 }
 
 export default registerFileMetadataIPCHandler

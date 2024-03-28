@@ -1,13 +1,14 @@
+import { logger } from "../../common/logger.mjs";
 import registerFileMetadataIPCHandler from "./ipc.file.mjs";
 import registerNotificationIPCHandler from "./ipc.notification.mjs";
 
 const registerIPCHandlers = ()=>{
-    console.log('Registering all ipcMain handlers..');
+    logger.info('Registering all ipcMain handlers..');
 
     registerNotificationIPCHandler();
     registerFileMetadataIPCHandler();
 
-    console.log('Registered all ipcMain handlers!');
+    logger.info('Registered all ipcMain handlers!');
 };
 
 export default registerIPCHandlers;

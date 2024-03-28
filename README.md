@@ -1,7 +1,13 @@
 ## Create folder electron-media-compressor using terminal and launch VSCode
     $ npm init
-    $ npm i react-toastify electronmon react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons react-simple-image-viewer
-    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react electron-reload-webpack-plugin style-loader css-loader html-webpack-plugin electron-hot-reload url-loader 
+    
+    Dependencies:
+    $ npm i react-toastify react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons electron-log
+
+    Dev dependencies:
+    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin electron-hot-reload url-loader 
+
+TODO: npm uninstall electronmon electron-reload electron-reload-webpack-plugin
 
     Setup ElectronForge:
     $ npm exec --package=@electron-forge/cli -c "electron-forge import"
