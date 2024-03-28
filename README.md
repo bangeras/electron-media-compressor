@@ -1,10 +1,13 @@
-## Create folder media-compressor using terminal and launch VSCode
+## Create folder electron-media-compressor using terminal and launch VSCode
     $ npm init
-    $ npm i electron react-toastify electronmon react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons react-simple-image-viewer
-    $ npm i --save-dev webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react electron-reload-webpack-plugin style-loader css-loader html-webpack-plugin electron-hot-reload url-loader
+    $ npm i react-toastify electronmon react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons react-simple-image-viewer
+    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react electron-reload-webpack-plugin style-loader css-loader html-webpack-plugin electron-hot-reload url-loader 
 
+    Setup ElectronForge:
+    $ npm exec --package=@electron-forge/cli -c "electron-forge import"
 
 ## Run the app
+    App              : npm start                # electron-forge start
     main process     : npm run start:main       # "start:main": "electron ."
     renderer process : npm run start:renderer   # "start:renderer": "webpack --config ./renderer/webpack.config.js --watch"
     (In Dev, Start the renderer process too for supplementing hot reloads of any renderer codebase changes)
