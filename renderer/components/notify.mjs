@@ -1,9 +1,10 @@
 import React from 'react'
+import { logger } from '../../common/logger.mjs';
 
 
 const Notify = (props) => {
     const sendNotification = async () => {
-        console.log("notify.mjs sendNotification() invoked..")
+        logger.info("notify.mjs sendNotification() invoked...")
         await window.electronApis.notificationApi.sendNotification("Notification from renderer(react app)");
     };
 

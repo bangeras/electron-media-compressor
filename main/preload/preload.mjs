@@ -14,4 +14,4 @@ import { logger } from '../../common/logger.mjs';
     });
 
     logger.info('preloaded!')
-})()
+})();
