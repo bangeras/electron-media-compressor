@@ -7,8 +7,6 @@
     Dev dependencies:
     $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin electron-hot-reload url-loader 
 
-TODO: npm uninstall electronmon electron-reload electron-reload-webpack-plugin
-
     Setup ElectronForge:
     $ npm exec --package=@electron-forge/cli -c "electron-forge import"
 
@@ -16,6 +14,7 @@ TODO: npm uninstall electronmon electron-reload electron-reload-webpack-plugin
     App              : npm start                # electron-forge start
     main process     : npm run start:main       # "start:main": "electron ."
     renderer process : npm run start:renderer   # "start:renderer": "webpack --config ./renderer/webpack.config.js --watch"
+    Package          : npm run make             # electron-forge make
     (In Dev, Start the renderer process too for supplementing hot reloads of any renderer codebase changes)
     
 ## Project structure   
