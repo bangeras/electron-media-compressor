@@ -5,7 +5,7 @@ import { registerHotReload } from './hotreloader.mjs';
 import registerIPCHandlers from './ipc/ipc.mjs';
 import { logger } from '../common/logger.mjs';
 import { grantPermissionsOnFolder } from './modules/folderPermissions.mjs';
-import { getDocumentsPath } from './modules/filePath.mjs';
+import getFilePath, { getDocumentsPath } from './modules/filePath.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
