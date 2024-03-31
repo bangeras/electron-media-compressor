@@ -21,7 +21,7 @@ const createWindow = () => {
     frame: false, // frameless window
     webPreferences: {
         
-        nodeIntegration: true, // Disable Node.js integration in renderer process
+        nodeIntegration: false, // Disable Node.js integration in renderer process
         contextIsolation: true, // Enable context isolation in renderer process
         preload: path.join(__dirname, './preload/preload.mjs'), // Use the ESM preload path
         sandbox: false
