@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { registerHotReload } from './hotreloader.mjs';
 import registerIPCHandlers from './ipc/ipc.mjs';
 import { logger } from '../common/logger.mjs';
+import { grantPermissionsOnFolder } from './modules/folderPermissions.mjs';
+import { getDocumentsPath } from './modules/filePath.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,6 +39,9 @@ const createWindow = () => {
 app.whenReady().then(() => {
   mainWindow = createWindow(); //Launch Renderer process
   registerIPCHandlers(); // Handlers within main process for native API / NodeJS calls
+
+  grantPermissionsOnFolder(getFilePath(getDocumentsPath(), app.getName())); // Grant write permissions on the output folder to save compressed files
+  
   logger.info('mainWindow created!');
 });
 
