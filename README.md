@@ -5,7 +5,7 @@
     $ npm i react-toastify react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons electron-log electron-hot-reload
 
     Dev dependencies:
-    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin url-loader @electron-forge/publisher-github dotenv
+    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin url-loader @electron-forge/publisher-github dotenv @electron-forge/maker-dmg
 
     Setup ElectronForge:
     $ npm exec --package=@electron-forge/cli -c "electron-forge import"
@@ -78,3 +78,4 @@ Download the app from Github:
 
     On Mac: https://discussions.apple.com/thread/253714860?sortBy=best
     $ xattr -c /Users/surajvbangera/Downloads/media-compressor.app
+    $ xattr -c /Applications/media-compressor.app

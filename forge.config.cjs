@@ -21,22 +21,26 @@ module.exports = {
   ],
   rebuildConfig: {},
   makers: [
-    {
+    { //Windows
       name: '@electron-forge/maker-squirrel',
       config: {},
     },
-    {
+    { //Darwin(Mac)
       name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
+      platforms: ['darwin', 'linux'],
     },
-    {
+    { //Ubuntu
       name: '@electron-forge/maker-deb',
       config: {},
     },
-    {
+    { //Fedora
       name: '@electron-forge/maker-rpm',
       config: {},
     },
+    { //Mac
+      name: '@electron-forge/maker-dmg',
+      config: {},
+    }
   ],
   plugins: [
     // {
