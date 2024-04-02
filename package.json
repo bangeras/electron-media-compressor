@@ -35,7 +35,6 @@
     "css-loader": "^6.10.0",
     "dotenv": "^16.4.5",
     "electron": "^29.1.6",
-    "electron-hot-reload": "^0.1.4",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
     "style-loader": "^3.3.4",
@@ -45,6 +44,7 @@
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "electron-hot-reload": "^0.1.4",
     "electron-log": "^5.1.2",
     "electron-squirrel-startup": "^1.0.0",
     "fluent-ffmpeg": "^2.1.2",
