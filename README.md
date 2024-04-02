@@ -5,7 +5,7 @@
     $ npm i react-toastify react react-dom imagemin imagemin-pngquant imagemin-jpegtran imagemin-gifsicle imagemin-svgo fluent-ffmpeg @ffmpeg-installer/ffmpeg react-loading-icons electron-log
 
     Dev dependencies:
-    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin electron-hot-reload url-loader 
+    $ npm i --save-dev electron @electron-forge/cli @electron-forge/plugin-fuses webpack webpack-cli @babel/core babel-loader @babel/preset-env @babel/preset-react style-loader css-loader html-webpack-plugin electron-hot-reload url-loader @electron-forge/publisher-github
 
     Setup ElectronForge:
     $ npm exec --package=@electron-forge/cli -c "electron-forge import"
@@ -42,4 +42,39 @@
         await window.electronApis.notificationApi.sendNotification("Notification from renderer(react app)") 
     Using the IPC protocol (via ipcRenderer) the native function API  available on the main process is invoked 
         ipcRenderer.send(channels.NOTIFY, message);
-    The main process API handlers (via the ipcMain) are triggered to execute the desired functions
+    The main process API handlers (via the ipcMain) are triggered to execute the desired function
+    
+
+## Publishing app
+    
+
+Generate a publishing token on Github
+
+    https://github.com/settings/personal-access-tokens/3047810
+    
+
+Configure the token in .env:
+    echo \GITHUB_TOKEN=<copy from github> >> .env 
+
+    publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'bangeras',
+          name: 'electron-media-compressor'
+        },
+        authToken: process.env.GITHUB_TOKEN,
+      }
+    }
+
+Publish the app:
+
+    $ npm run publish
+
+Download the app from Github:
+
+    https://github.com/bangeras/electron-media-compressor/releases
+
+    On Mac: https://discussions.apple.com/thread/253714860?sortBy=best
+    $ xattr -c /Users/surajvbangera/Downloads/media-compressor.app

@@ -1,10 +1,24 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+require('dotenv').config();
 
 module.exports = {
   packagerConfig: {
     asar: false //https://github.com/electron/electron/issues/9459
   },
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'bangeras',
+          name: 'electron-media-compressor'
+        },
+        authToken: process.env.GITHUB_TOKEN,
+        // prerelease: true
+      }
+    }
+  ],
   rebuildConfig: {},
   makers: [
     {
