@@ -5,6 +5,9 @@ require('dotenv').config();
 module.exports = {
   packagerConfig: {
     asar: false //https://github.com/electron/electron/issues/9459
+    // asar: {
+    //   unpack: "**/node_modules/exec-buffer/**/*"
+    // }
   },
   publishers: [
     {
@@ -43,10 +46,10 @@ module.exports = {
     }
   ],
   plugins: [
-    // {
-    //   name: '@electron-forge/plugin-auto-unpack-natives',
-    //   config: {},
-    // },
+    {
+      name: '@electron-forge/plugin-auto-unpack-natives',
+      config: {},
+    },
     // Fuses are used to enable/disable various Electron functionality
     // at package time, before code signing the application
     new FusesPlugin({
